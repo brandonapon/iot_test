@@ -19,6 +19,8 @@ class bird_watch:
         }
         self.bird_response_raw = ''
         self.token = ''
+        self.longitude = ''
+        self.latitude = ''
 
     def update_login_info(self):
         self.guid = str(uuid.uuid4())
@@ -27,21 +29,26 @@ class bird_watch:
         self.request_headers['Device-id'] = self.guid
 
     def login(self):
-        self.update_login_info()
+        # self.update_login_info()
         self.token = None
         attempt = 0
-        while self.token is None and attempt <= 10:
+        while self.token is None and attempt < 10:
             try:
                 bird_response_raw = requests.post(url=self.bird_url, json=self.request_body, headers=self.request_headers)
                 self.token = bird_response_raw.json()['token']
             except:
                 attempt += 1
                 print("attempt ", attempt)
-        print("Login successful")
+        if attempt < 10:
+            print("Login successful")
+        else:
+            print("Login unsuccessful")
+
+    def request(self):
+        pass
 
 '''
 Next steps:
-1. parse and save token from bird_response
 2. get request birds in IV
 3. append data into file
 '''
