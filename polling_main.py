@@ -9,8 +9,6 @@ print(b.email, b.guid)
 b.login()
 b.set_search(34.413112,-119.855395, 10, 1200)
 time_interval = 5
-def test_data():
-    b.export_to_file('output.txt', b.pull_data())
 poll_scheduler.setup(time_interval, b.export_to_file, ('output.txt', b.pull_data()))
 poll_scheduler.run()
 

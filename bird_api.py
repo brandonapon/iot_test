@@ -28,8 +28,6 @@ class bird_watch:
         self.search_url = ''
         self.search_headers = None
 
-
-
     # Randomly generates 16 byte GUID/UUID and 10 character long email (ex: 2dUc51@gmail.com)
     def update_login_info(self):
         self.guid = str(uuid.uuid4())
