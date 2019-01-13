@@ -1,12 +1,17 @@
 from bird_api import bird_watch
-import sched, time
+from periodic_polling import periodic_scheduler
+
+poll_scheduler = periodic_scheduler()
 
 b = bird_watch()
 b.update_login_info()
 print(b.email, b.guid)
 b.login()
 b.set_search(34.413112,-119.855395, 10, 1200)
-# poll_scheduler = sched.scheduler(time.time, time.sleep)
-# time_interval = 60
-# poll_scheduler.setup(time_interval, b.pull_data())
-b.pull_data()
+time_interval = 5
+def test_data():
+    b.export_to_file('output.txt', b.pull_data())
+poll_scheduler.setup(time_interval, b.export_to_file, ('output.txt', b.pull_data()))
+poll_scheduler.run()
+
+# b.pull_data()

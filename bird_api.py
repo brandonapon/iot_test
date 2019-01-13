@@ -52,9 +52,9 @@ class bird_watch:
                 attempt += 1
                 print("attempt ", attempt)
         if attempt < 10:
-            print("Login successful, attempted ", attempt, " times")
+            print("Login successful")
         else:
-            print("Login unsuccessful")
+            print("Login unsuccessful, attempted ", attempt, " times")
 
     # Sets location and radius of search in meters(?)
     def set_search(self, latitude, longitude, altitude, radius):
@@ -84,9 +84,14 @@ class bird_watch:
                 print ("attempt ", attempt)
         if attempt < 10:
             print('Query successful')
-            # print(search_result.text)
-            return search_result
+            print(search_result.text)
+            return search_result.text
         else:
             print('Query unsuccessful, attempted ', attempt, " times")
             # print(search_result.text)
             return search_result
+
+    def export_to_file(self, filename, data):
+        file = open(filename, 'a')
+        file.write(data)
+        file.close()
