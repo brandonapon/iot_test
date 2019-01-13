@@ -1,6 +1,6 @@
 # iot_test
-This is a basic script to access the bird API.
-Last Updated: 01/12/2019
+This is a basic script to access the bird API based off of https://github.com/ubahnverleih/WoBike/blob/master/Bird.md
+Readme Last Updated: 01/12/2019
 
 How to run:
 python polling_main.py
